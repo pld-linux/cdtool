@@ -1,12 +1,12 @@
 Summary:	Powerful command line CDROM player and tools
 Summary(pl):	Odtwarzacz p³yt CD wywo³any z linii poleceñ
 Name:		cdtool
-Version:	2.1.6
+Version:	2.1.7
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://hinterhof.net/cdtool/dist/%{name}-%{version}.tar.gz
-# Source0-md5:	f78e34a2e001bb8856ed11fc3cde76fb
+# Source0-md5:	a77d4e62a36ed192570d1350314adb94
 Patch0:		%{name}-install.patch
 URL:		http://hinterhof.net/cdtool/
 # /usr/bin/cdplay with similar functionality - what to do?
