@@ -1,19 +1,16 @@
---- cdtool-2.1.6/Makefile.in.orig	2004-07-29 19:47:39.000000000 +0200
-+++ cdtool-2.1.6/Makefile.in	2004-08-01 13:02:21.478405032 +0200
-@@ -42,21 +42,26 @@
+--- cdtool-2.1.7/Makefile.in.orig	2004-08-06 14:38:17.000000000 +0200
++++ cdtool-2.1.7/Makefile.in	2004-08-07 18:27:43.345851144 +0200
+@@ -47,15 +47,18 @@
  build: $(PROGRAMS)
  
  install: install-files install-links
 -install-files:
--	$(INSTALL) cdctrl $(bindir) -o root
--	$(INSTALL) cdloop $(bindir) -o root
--	$(INSTALL) cdadd $(bindir) -o root
--	$(INSTALL) cdown $(bindir) -o root
--
--	$(INSTALL) cdown.1 $(mandir)/man1
--	$(INSTALL) cdtool.1 $(bindir)/man1
--	$(INSTALL) cdctrl.1 $(bindir)/man1
--	$(INSTALL) cdloop.1 $(bindir)/man1
+-	mkdir -p $(DESTDIR)$(bindir)
+-	$(INSTALL) cdctrl $(DESTDIR)$(bindir) -o root
+-	$(INSTALL) cdloop $(DESTDIR)$(bindir) -o root
+-	$(INSTALL) cdadd $(DESTDIR)$(bindir) -o root
+-	$(INSTALL) cdown $(DESTDIR)$(bindir) -o root
+-	$(INSTALL) cdtool2cddb $(DESTDIR)$(bindir) -o root
 +install-dirs:
 +	$(INSTALL) -d $(DESTDIR)$(bindir)
 +	$(INSTALL) -d $(DESTDIR)$(libdir)
@@ -24,15 +21,17 @@
 +	$(INSTALL) cdloop $(DESTDIR)$(bindir)
 +	$(INSTALL) cdadd $(DESTDIR)$(bindir)
 +	$(INSTALL) cdown $(DESTDIR)$(bindir)
-+
-+	$(INSTALL) cdown.1 $(DESTDIR)$(mandir)/man1
-+	$(INSTALL) cdtool.1 $(DESTDIR)$(mandir)/man1
-+	$(INSTALL) cdctrl.1 $(DESTDIR)$(mandir)/man1
-+	$(INSTALL) cdloop.1 $(DESTDIR)$(mandir)/man1
++	$(INSTALL) cdtool2cddb $(DESTDIR)$(bindir)
  
--	$(INSTALL) -d $(libdir)/cdtool -o root -g root -m 0755
--	$(INSTALL) cdtool $(libdir)/cdtool -o root
-+	$(INSTALL) -d $(DESTDIR)$(libdir)/cdtool -m 0755
+-	mkdir -p $(DESTDIR)$(mandir)/man1
+ 	$(INSTALL) cdctrl.1 $(DESTDIR)$(mandir)/man1
+ 	$(INSTALL) cdloop.1 $(DESTDIR)$(mandir)/man1
+ 	$(INSTALL) cdadd.1 $(DESTDIR)$(mandir)/man1
+@@ -64,9 +67,9 @@
+ 	$(INSTALL) cdtool2cddb.1 $(DESTDIR)$(mandir)/man1
+ 
+ 	mkdir -p $(DESTDIR)$(libdir)/cdtool
+-	$(INSTALL) cdtool $(DESTDIR)$(libdir)/cdtool -o root
 +	$(INSTALL) cdtool $(DESTDIR)$(libdir)/cdtool
   
 -LINKTARGET = ../lib/cdtool/cdtool
@@ -40,22 +39,21 @@
  LINKS = cdplay cdpause cdstop cdclose cdeject cdir cdinfo cdreset \
    cdvolume cdshuffle
  
-@@ -64,13 +69,14 @@
+@@ -74,7 +77,7 @@
  install-links-local: bindir = .
  install-links-local: install-links
  
 -install-links:
 +install-links: install-dirs
  	for command in $(LINKS); do \
--	  if test -e $(bindir)/$$command || test -h $(bindir)/$$command; then\
--	    echo $(bindir)/$$command exists; \
-+	  if test -e $(DESTDIR)$(bindir)/$$command || test -h $(DESTDIR)$(bindir)/$$command; then\
-+	    echo $(DESTDIR)$(bindir)/$$command exists; \
- 	    continue; \
+ 	  if ! test -h $(DESTDIR)$(bindir)/$$command; then \
+ 	    echo installing $$command; \
+@@ -84,7 +87,7 @@
+ 	  if ! test -h $(DESTDIR)$(mandir)/man1/$$command.1; then \
+ 	    echo installing $$command.1; \
+ 	    rm -f $(DESTDIR)$(mandir)/man1/$$command.1; \
+-	    ln -s cdtool.1 $(DESTDIR)$(mandir)/man1/$$command.1; \
++	    echo ".so cdtool.1" > $(DESTDIR)$(mandir)/man1/$$command.1; \
  	  fi; \
--	  ln -s $(LINKTARGET) $(bindir)/$$command; \
-+	  ln -s $(LINKTARGET) $(DESTDIR)$(bindir)/$$command; \
-+	  echo ".so cdtool.1" > $(DESTDIR)$(mandir)/man1/$${command}.1; \
  	done
  
- clean:
