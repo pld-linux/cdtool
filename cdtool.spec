@@ -2,7 +2,7 @@ Summary:	Powerful command line CDROM player and tools
 Summary(pl):	Odtwarzacz p³yt CD wywo³any z linii poleceñ
 Name:		cdtool
 Version:	2.1.8
-%define _rel    pre1
+%define	_rel	pre1
 Release:	0.%{_rel}.1
 License:	GPL v2
 Group:		Applications/System
