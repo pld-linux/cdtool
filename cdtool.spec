@@ -24,11 +24,11 @@ CDDB.
 %setup -q
 
 %build
-make clean noobjs cdown cdadd DEBUG_FLAGS="$RPM_OPT_FLAGS"
-make cdctrl DEBUG_FLAGS="$RPM_OPT_FLAGS -s -DCDCTRL"
-make noobjs
-make cdtool DEBUG_FLAGS="$RPM_OPT_FLAGS -s"
-make links
+%{__make} clean noobjs cdown cdadd DEBUG_FLAGS="$RPM_OPT_FLAGS"
+%{__make} cdctrl DEBUG_FLAGS="$RPM_OPT_FLAGS -s -DCDCTRL"
+%{__make} noobjs
+%{__make} cdtool DEBUG_FLAGS="$RPM_OPT_FLAGS -s"
+%{__make} links
 
 %install
 rm -rf $RPM_BUILD_ROOT
