@@ -1,0 +1,1 @@
+- "cp -a" preserves symbolic links ( "install" doesn't )
