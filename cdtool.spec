@@ -7,7 +7,7 @@ Copyright:	GPL
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source:		ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cli/%{name}-%{version}.tar.gz
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 A package of command-line utilities to play and catalog audio CD-ROMs.  This
