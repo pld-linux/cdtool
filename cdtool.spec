@@ -1,5 +1,5 @@
 Summary:	Powerful command line CDROM player and tools
-Summary(pl):	Odtwarzacz p造t CD wywo豉ny z lini komend
+Summary(pl):	Odtwarzacz p造t CD wywo豉ny z linii komend
 Name:		cdtool
 Version:	2.1.5
 Release:	3
@@ -16,7 +16,7 @@ allows querying of the cddb database to build a local database of
 discs usable by cdinfo, etc.
 
 %description -l pl
-Pakiet zawiera odtwarzacz p造t CD wywo造wany z lini komend. Korzysta z
+Pakiet zawiera odtwarzacz p造t CD wywo造wany z linii komend. Korzysta z
 CDDB.
 
 %prep
