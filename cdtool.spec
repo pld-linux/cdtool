@@ -3,20 +3,22 @@ Summary(pl):	Odtwarzacz p造t CD wywo豉ny z lini komend
 Name:		cdtool
 Version:	2.1.5
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Utilities/System
 Group(pl):	Narz璠zia/System
-Source:		ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cli/%{name}-%{version}.tar.gz
+Source0:	ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cli/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-A package of command-line utilities to play and catalog audio CD-ROMs.  This
-package includes cdstart, cdpause, cdstop, cdeject, and cdshuffle. Also,
-cdctrl may be used as a CD-ROM control daemon. Cdown allows querying of the
-cddb database to build a local database of discs usable by cdinfo, etc.
+A package of command-line utilities to play and catalog audio CD-ROMs.
+This package includes cdstart, cdpause, cdstop, cdeject, and
+cdshuffle. Also, cdctrl may be used as a CD-ROM control daemon. Cdown
+allows querying of the cddb database to build a local database of
+discs usable by cdinfo, etc.
 
 %description -l pl
-Pakiet zawiera odtwarzacz p造t CD wywo造wany z lini komend. Korzysta z CDDB.
+Pakiet zawiera odtwarzacz p造t CD wywo造wany z lini komend. Korzysta z
+CDDB.
 
 %prep
 %setup -q
