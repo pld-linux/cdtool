@@ -1,5 +1,5 @@
 Summary:	Powerful command line CDROM player and tools.
-Summary(pl):	Odtwarzacz p造t CD wywo造wany z linii komend
+Summary(pl):	Odtwarzacz p造t CD wywo豉ny z lini komend
 Name:		cdtool
 Version:	2.1.5
 Release:	1
@@ -25,13 +25,14 @@ Pakiet zawiera odtwarzacz p造t CD wywo造wany z lini komend. Korzysta z CDDB.
 make clean noobjs cdown cdadd DEBUG_FLAGS="$RPM_OPT_FLAGS"
 make cdctrl DEBUG_FLAGS="$RPM_OPT_FLAGS -s -DCDCTRL"
 make noobjs
-make cdtool links DEBUG_FLAGS="$RPM_OPT_FLAGS -s"
+make cdtool DEBUG_FLAGS="$RPM_OPT_FLAGS -s"
+make links
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
-install cd{ctrl,ir,eject,info,loop,add,own,pause,reset,shuffle,start,stop,tool} \
+cp -a cd{ctrl,ir,eject,info,loop,add,own,pause,reset,shuffle,start,stop,tool} \
 	$RPM_BUILD_ROOT%{_bindir}
 install {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
