@@ -5,8 +5,6 @@ Version:	2.1.5
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cli/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
