@@ -2,7 +2,7 @@ Summary:	Powerful command line CDROM player and tools.
 Summary(pl):	Odtwarzacz p³yt CD wywo³any z lini komend
 Name:		cdtool
 Version:	2.1.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -33,11 +33,11 @@ CDDB.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+%{__install} -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 cp -a cd{ctrl,ir,eject,info,loop,add,own,pause,reset,shuffle,start,stop,tool} \
 	$RPM_BUILD_ROOT%{_bindir}
-install {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+%{__install} {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdstart.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdpause.1
