@@ -31,11 +31,11 @@ CDDB.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
 cp -a cd{ctrl,ir,eject,info,loop,add,own,pause,reset,shuffle,start,stop,tool} \
 	$RPM_BUILD_ROOT%{_bindir}
-%{__install} {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdstart.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdpause.1
