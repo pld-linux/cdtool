@@ -1,5 +1,5 @@
 Summary:	Powerful command line CDROM player and tools.
-Summary(pl):	Odtwarzacz p³yt CD wywo³any z lini komend
+Summary(pl):	Odtwarzacz p³yt CD wywo³ywany z linii komend
 Name:		cdtool
 Version:	2.1.5
 Release:	1
