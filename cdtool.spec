@@ -4,8 +4,9 @@ Name:		cdtool
 Version:	2.1.5
 Release:	1
 License:	GPL
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 Source0:	ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cli/%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,10 +25,10 @@ CDDB.
 %setup -q
 
 %build
-%{__make} clean noobjs cdown cdadd DEBUG_FLAGS="$RPM_OPT_FLAGS"
-%{__make} cdctrl DEBUG_FLAGS="$RPM_OPT_FLAGS -s -DCDCTRL"
+%{__make} clean noobjs cdown cdadd DEBUG_FLAGS="%{rpmcflags}"
+%{__make} cdctrl DEBUG_FLAGS="%{rpmcflags} %{rpmldflags} -DCDCTRL"
 %{__make} noobjs
-%{__make} cdtool DEBUG_FLAGS="$RPM_OPT_FLAGS -s"
+%{__make} cdtool DEBUG_FLAGS="%{rpmcflags} %{rpmldflags}"
 %{__make} links
 
 %install
@@ -47,12 +48,13 @@ echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdinfo.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdreset.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdshuffle.1
 
-gzip -9nf {README,cdtool-2.1.5.lsm,$RPM_BUILD_ROOT%{_mandir}/man1/*}
+gzip -9nf README
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
 %files
 %defattr(644,root,root,755)
-%doc {README,cdtool-2.1.5.lsm}.gz
+%doc README.gz
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/*
