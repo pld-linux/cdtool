@@ -1,57 +1,57 @@
 Summary:	Powerful command line CDROM player and tools
-Summary(pl):	Odtwarzacz p³yt CD wywo³any z linii komend
+Summary(pl):	Odtwarzacz p³yt CD wywo³any z linii poleceñ
 Name:		cdtool
-Version:	2.1.5
-Release:	4
+Version:	2.1.6
+Release:	1
 License:	GPL
 Group:		Applications/System
-Source0:	ftp://sunsite.unc.edu/pub/Linux/apps/sound/cdrom/cli/%{name}-%{version}.tar.gz
-# Source0-md5:	23c6646240440a14087de1d6e4884abb
+Source0:	http://hinterhof.net/cdtool/dist/%{name}-%{version}.tar.gz
+# Source0-md5:	f78e34a2e001bb8856ed11fc3cde76fb
+Patch0:		%{name}-install.patch
+URL:		http://hinterhof.net/cdtool/
+# /usr/bin/cdplay with similar functionality - what to do?
+Conflicts:	cdp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 A package of command-line utilities to play and catalog audio CD-ROMs.
 This package includes cdstart, cdpause, cdstop, cdeject, and
-cdshuffle. Also, cdctrl may be used as a CD-ROM control daemon. Cdown
+cdshuffle. Also, cdctrl may be used as a CD-ROM control daemon. cdown
 allows querying of the cddb database to build a local database of
 discs usable by cdinfo, etc.
 
 %description -l pl
-Pakiet zawiera odtwarzacz p³yt CD wywo³ywany z linii komend. Korzysta z
-CDDB.
+Pakiet dzia³aj±cych z linii poleceñ narzêdzi do odtwarzania i
+katalogowania p³yt CD Audio. Zawiera cdstart, cdpause, cdstop, cdeject
+i cdshuffle. Program cdctrl mo¿e byæ u¿ywany tak¿e jako demon do
+sterowania p³ytami CD. cdown umo¿liwia odpytywanie bazy cddb w celu
+zbudowania lokalnej bazy danych p³yt u¿ywalnej dla cdinfo itp.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__make} clean noobjs cdown cdadd DEBUG_FLAGS="%{rpmcflags}"
-%{__make} cdctrl DEBUG_FLAGS="%{rpmcflags} %{rpmldflags} -DCDCTRL"
-%{__make} noobjs
-%{__make} cdtool DEBUG_FLAGS="%{rpmcflags} %{rpmldflags}"
-%{__make} links
+%configure
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
 
-cp -a cd{ctrl,ir,eject,info,loop,add,own,pause,reset,shuffle,start,stop,tool} \
-	$RPM_BUILD_ROOT%{_bindir}
-install {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdstart.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdpause.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdstop.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdeject.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdir.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdinfo.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdreset.1
-echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdshuffle.1
+# separate script, but documented in cdtool(1)
+echo '.so cdadd.1' >$RPM_BUILD_ROOT%{_mandir}/man1/cdtool.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc CHANGES PEOPLE README TODO
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libdir}/cdtool
+%attr(755,root,root) %{_libdir}/cdtool/cdtool
 %{_mandir}/man1/*
