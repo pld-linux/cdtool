@@ -22,13 +22,17 @@ Pakiet zawiera odtwarzacz p³yt CD wywo³ywany z lini komend. Korzysta z CDDB.
 %setup -q
 
 %build
-make
+make clean noobjs cdown cdadd DEBUG_FLAGS="$RPM_OPT_FLAGS"
+make cdctrl DEBUG_FLAGS="$RPM_OPT_FLAGS -s -DCDCTRL"
+make noobjs
+make cdtool links DEBUG_FLAGS="$RPM_OPT_FLAGS -s"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1}
-install cdctrl cdloop cdloop cdadd cdown $RPM_BUILD_ROOT%{_bindir}
+install cd{ctrl,ir,eject,info,loop,add,own,pause,reset,shuffle,start,stop,tool} \
+	$RPM_BUILD_ROOT%{_bindir}
 install {cdtool,cdctrl,cdown}.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdstart.1
@@ -39,15 +43,6 @@ echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdir.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdinfo.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdreset.1
 echo .so cdtool.1 >$RPM_BUILD_ROOT%{_mandir}/man1/cdshuffle.1
-
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdstart
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdpause
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdstop
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdeject
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdir
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdinfo
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdreset
-ln -sf cdtool $RPM_BUILD_ROOT%{_bindir}/cdshuffle
 
 gzip -9nf {README,cdtool-2.1.5.lsm,$RPM_BUILD_ROOT%{_mandir}/man1/*}
 
