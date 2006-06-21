@@ -2,12 +2,12 @@ Summary:	Powerful command line CDROM player and tools
 Summary(pl):	Odtwarzacz p³yt CD wywo³any z linii poleceñ
 Name:		cdtool
 Version:	2.1.8
-%define	_rel	pre1
+%define	_rel	pre4
 Release:	0.%{_rel}.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://hinterhof.net/cdtool/dist/%{name}-%{version}%{_rel}.tar.gz
-# Source0-md5:	6f6e3740d5c5525b3c0067b043310a3c
+# Source0-md5:	a9f0f8c1162b8238a1c21fc20405a4a4
 Patch0:		%{name}-install.patch
 URL:		http://hinterhof.net/cdtool/
 # /usr/bin/cdplay with similar functionality - what to do?
@@ -43,15 +43,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# separate script, but documented in cdtool(1)
-echo '.so cdadd.1' >$RPM_BUILD_ROOT%{_mandir}/man1/cdtool.1
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES PEOPLE README TODO
+%doc CHANGES CREDITS README TODO
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/cdtool
 %attr(755,root,root) %{_libdir}/cdtool/cdtool
