@@ -2,12 +2,11 @@ Summary:	Powerful command line CDROM player and tools
 Summary(pl):	Odtwarzacz p³yt CD wywo³any z linii poleceñ
 Name:		cdtool
 Version:	2.1.8
-%define	_rel	pre4
-Release:	0.%{_rel}.1
+Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://hinterhof.net/cdtool/dist/%{name}-%{version}%{_rel}.tar.gz
-# Source0-md5:	a9f0f8c1162b8238a1c21fc20405a4a4
+Source0:	http://hinterhof.net/cdtool/dist/%{name}-%{version}.tar.gz
+# Source0-md5:	7b19b6f68d2c648296378b784d5f7681
 Patch0:		%{name}-install.patch
 URL:		http://hinterhof.net/cdtool/
 # /usr/bin/cdplay with similar functionality - what to do?
@@ -29,7 +28,7 @@ sterowania p³ytami CD. cdown umo¿liwia odpytywanie bazy cddb w celu
 zbudowania lokalnej bazy danych p³yt u¿ywalnej dla cdinfo itp.
 
 %prep
-%setup -q -n %{name}-%{version}%{_rel}
+%setup -q
 %patch0 -p1
 
 %build
