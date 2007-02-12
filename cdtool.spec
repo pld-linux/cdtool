@@ -1,5 +1,5 @@
 Summary:	Powerful command line CDROM player and tools
-Summary(pl.UTF-8):   Odtwarzacz płyt CD wywołany z linii poleceń
+Summary(pl.UTF-8):	Odtwarzacz płyt CD wywołany z linii poleceń
 Name:		cdtool
 Version:	2.1.8
 Release:	1
