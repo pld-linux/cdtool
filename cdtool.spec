@@ -1,5 +1,5 @@
 Summary:	Powerful command line CDROM player and tools
-Summary(pl):	Odtwarzacz p≥yt CD wywo≥any z linii poleceÒ
+Summary(pl.UTF-8):   Odtwarzacz p≈Çyt CD wywo≈Çany z linii polece≈Ñ
 Name:		cdtool
 Version:	2.1.8
 Release:	1
@@ -20,12 +20,12 @@ cdshuffle. Also, cdctrl may be used as a CD-ROM control daemon. cdown
 allows querying of the cddb database to build a local database of
 discs usable by cdinfo, etc.
 
-%description -l pl
-Pakiet dzia≥aj±cych z linii poleceÒ narzÍdzi do odtwarzania i
-katalogowania p≥yt CD Audio. Zawiera cdstart, cdpause, cdstop, cdeject
-i cdshuffle. Program cdctrl moøe byÊ uøywany takøe jako demon do
-sterowania p≥ytami CD. cdown umoøliwia odpytywanie bazy cddb w celu
-zbudowania lokalnej bazy danych p≥yt uøywalnej dla cdinfo itp.
+%description -l pl.UTF-8
+Pakiet dzia≈ÇajƒÖcych z linii polece≈Ñ narzƒôdzi do odtwarzania i
+katalogowania p≈Çyt CD Audio. Zawiera cdstart, cdpause, cdstop, cdeject
+i cdshuffle. Program cdctrl mo≈ºe byƒá u≈ºywany tak≈ºe jako demon do
+sterowania p≈Çytami CD. cdown umo≈ºliwia odpytywanie bazy cddb w celu
+zbudowania lokalnej bazy danych p≈Çyt u≈ºywalnej dla cdinfo itp.
 
 %prep
 %setup -q
