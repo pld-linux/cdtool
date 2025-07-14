@@ -29,7 +29,7 @@ zbudowania lokalnej bazy danych płyt używalnej dla cdinfo itp.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %configure
